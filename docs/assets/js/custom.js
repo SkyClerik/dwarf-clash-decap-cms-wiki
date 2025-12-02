@@ -1,5 +1,6 @@
 document$.subscribe(function() {
-  const secretWord = "open";
+  const openSecretWord = "open";
+  const closeSecretWord = "close";
   const body = document.body;
 
   // Function to open the password prompt
@@ -7,31 +8,41 @@ document$.subscribe(function() {
     Swal.fire({
       title: 'Enter Password',
       input: 'password',
-      inputPlaceholder: 'Enter your password',
+      inputPlaceholder: 'Enter password (open or close)',
       inputAttributes: {
         autocapitalize: 'off',
         autocorrect: 'off'
       },
       showCancelButton: true,
-      confirmButtonText: 'Unlock',
+      confirmButtonText: 'Submit',
       showLoaderOnConfirm: true,
       preConfirm: (password) => {
-        if (password === secretWord) {
-          return true;
-        }
-        else {
+        if (password === openSecretWord) {
+          localStorage.setItem("authenticated", "true");
+          body.setAttribute("data-auth", "true");
+          return "open";
+        } else if (password === closeSecretWord) {
+          localStorage.removeItem("authenticated");
+          body.removeAttribute("data-auth");
+          return "close";
+        } else {
           Swal.showValidationMessage('Incorrect password!');
           return false;
         }
       },
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.setItem("authenticated", "true");
-        document.body.setAttribute("data-auth", "true");
+      if (result.value === "open") {
         Swal.fire({
           title: 'Success!',
           text: 'Hidden content unlocked.',
+          icon: 'success',
+          timer: 1500
+        });
+      } else if (result.value === "close") {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Hidden content locked.',
           icon: 'success',
           timer: 1500
         });
@@ -67,15 +78,12 @@ document$.subscribe(function() {
   let isAltPressed = false;
 
   document.addEventListener("keydown", function(event) {
-      // console.log("ALL KEY PRESS:", "Key:", event.key, "Code:", event.code, "Ctrl:", event.ctrlKey, "Alt:", event.altKey, "Shift:", event.shiftKey); // Removed log
-
       // Обновляем состояние модификаторов
       if (event.key === "Control") isCtrlPressed = true;
       if (event.key === "Alt") isAltPressed = true;
 
       // Проверяем комбинацию (Ctrl + Alt + P)
       if (isCtrlPressed && isAltPressed && event.code === "KeyP") { // Используем event.code для клавиши 'P'
-          // console.log("Ctrl+Alt+P hotkey pressed!"); // Removed log
           event.preventDefault(); // Prevent default browser behavior
           promptForPassword();
       }
