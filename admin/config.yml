@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: SkyClerik/dwarf-clash-decap-cms-wiki # <-- ЗАМЕНИ ЭТО! Например: SkyClerik/my-decap-cms-wiki
+  branch: main # или master, в зависимости от названия твоей основной ветки
+
+media_folder: "assets/images" # Папка для загруженных картинок
+public_folder: "/assets/images" # Публичный путь к картинкам
+
+collections:
+  - name: "pages" # Название коллекции
+    label: "Страницы" # Как она будет отображаться в админке
+    folder: "_pages" # В какой папке хранить .md файлы страниц
+    create: true # Разрешить создание новых страниц
+    slug: "{{slug}}" # Шаблон для имени файла
+    fields: # Поля, которые будут у каждой страницы
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Текст", name: "body", widget: "markdown" }
