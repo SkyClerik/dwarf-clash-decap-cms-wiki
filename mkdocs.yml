@@ -5,3 +5,7 @@ theme:
   name: material
   features:
     - navigation.tracking
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
