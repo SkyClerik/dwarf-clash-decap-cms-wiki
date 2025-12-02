@@ -1,20 +1,18 @@
 backend:
   name: github
-  repo: SkyClerik/dwarf-clash-decap-cms-wiki # <-- ЗАМЕНИ ЭТО! Например: SkyClerik/my-decap-cms-wiki
-  branch: main # или master, в зависимости от названия твоей основной ветки
-  oauth:
-    provider: github
-    app_id: Ov23liUwLeOBvryH17su
+  repo: SkyClerik/dwarf-clash-decap-cms-wiki
+  branch: main
+  site_domain: guileless-fudge-4d7b03.netlify.app
 
-media_folder: "assets/images" # Папка для загруженных картинок
-public_folder: "/assets/images" # Публичный путь к картинкам
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
-  - name: "pages" # Название коллекции
-    label: "Страницы" # Как она будет отображаться в админке
-    folder: "_pages" # В какой папке хранить .md файлы страниц
-    create: true # Разрешить создание новых страниц
-    slug: "{{slug}}" # Шаблон для имени файла
-    fields: # Поля, которые будут у каждой страницы
+  - name: "pages"
+    label: "Страницы"
+    folder: "_pages"
+    create: true
+    slug: "{{slug}}"
+    fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Текст", name: "body", widget: "markdown" }
