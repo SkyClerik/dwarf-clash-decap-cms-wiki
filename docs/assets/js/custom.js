@@ -55,18 +55,26 @@ document$.subscribe(function() {
     body.setAttribute("data-auth", "true");
   }
 
-  // MutationObserver to add class to "Develop" folder
+  // MutationObserver to add class to secret folders based on secretPaths
   const observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type === "childList" || mutation.type === "subtree") {
-        const developLink = document.querySelector('label[for="__nav_2"] .md-ellipsis'); // Assuming __nav_2 is for Develop
-        if (developLink && developLink.textContent.trim() === 'Develop') {
-          const parentLi = developLink.closest('.md-nav__item--nested');
-          if (parentLi && !parentLi.classList.contains('secret-item')) {
-            parentLi.classList.add('secret-item');
-            // console.log('Added secret-item class to Develop folder.'); // Removed log
+        document.querySelectorAll('.md-nav__item--nested').forEach(parentLi => {
+          const folderNameElement = parentLi.querySelector('label.md-nav__link span.md-ellipsis') || parentLi.querySelector('label.md-nav__title span.md-ellipsis');
+          
+          if (folderNameElement) {
+            const folderName = folderNameElement.textContent.trim();
+            const normalizedFolderName = folderName.toLowerCase().replace(/\s/g, '-') + '/';
+
+            // Check if this folder's normalized name is in secretPaths
+            if (secretPaths.includes(normalizedFolderName)) {
+              if (!parentLi.classList.contains('secret-item')) {
+                parentLi.classList.add('secret-item');
+                console.log('Added secret-item class to folder:', folderName);
+              }
+            }
           }
-        }
+        });
       }
     });
   });

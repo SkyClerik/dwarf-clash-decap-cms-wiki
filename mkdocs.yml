@@ -27,6 +27,7 @@ extra_css:
   - assets/css/custom.css
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/sweetalert2@11
+  - assets/js/secret_paths.js
   - assets/js/custom.js
 plugins:
   - search:
