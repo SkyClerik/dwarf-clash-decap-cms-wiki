@@ -1,12 +1,4 @@
 site_name: Dwarf Clash Wiki
-nav:
-  - Home: index.md
-  - 'Гайд по Markdown':
-    - 'Блоки предупреждений': 'markdown_guide/admonitions.md'
-    - 'Сворачивающиеся блоки': 'markdown_guide/details.md'
-    - 'Вкладки': 'markdown_guide/tabs.md'
-    - 'Форматирование текста': 'markdown_guide/text_formatting.md'
-    - 'Диаграммы': 'markdown_guide/diagrams.md'
 theme:
   name: material
   features:
@@ -26,6 +18,9 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Переключить на светлую тему
+plugins:
+  - search
+  - awesome-pages
 markdown_extensions:
   - admonition
   - pymdownx.details

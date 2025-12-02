@@ -23,7 +23,7 @@ jobs:
           python-version: 3.x # Используем Python 3
 
       - name: Install MkDocs and Extensions
-        run: pip install mkdocs-material "pymdown-extensions[extra]" # Устанавливаем MkDocs, тему и все расширения
+        run: pip install mkdocs-material "pymdown-extensions[extra]" mkdocs-awesome-pages-plugin # Устанавливаем MkDocs, тему, все расширения и плагин awesome-pages
 
       - name: Build and Deploy
         run: mkdocs gh-deploy --force # Собираем сайт и публикуем на gh-pages
