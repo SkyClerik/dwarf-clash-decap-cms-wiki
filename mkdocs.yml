@@ -1,6 +1,12 @@
 site_name: Dwarf Clash Wiki
 nav:
   - Home: index.md
+  - 'Гайд по Markdown':
+    - 'Блоки предупреждений': 'markdown_guide/admonitions.md'
+    - 'Сворачивающиеся блоки': 'markdown_guide/details.md'
+    - 'Вкладки': 'markdown_guide/tabs.md'
+    - 'Форматирование текста': 'markdown_guide/text_formatting.md'
+    - 'Диаграммы': 'markdown_guide/diagrams.md'
 theme:
   name: material
   features:
