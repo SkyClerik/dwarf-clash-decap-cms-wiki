@@ -1,0 +1,7 @@
+site_name: Dwarf Clash Wiki
+nav:
+  - Home: index.md
+theme:
+  name: material
+  features:
+    - navigation.tracking

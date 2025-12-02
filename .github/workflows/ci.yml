@@ -1,0 +1,29 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main # Срабатывает при пуше в ветку main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Для публикации на GitHub Pages
+      pages: write # Для использования GitHub Pages action
+      id-token: write # Для использования GitHub Pages action
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4 # Скачиваем репозиторий
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x # Используем Python 3
+
+      - name: Install MkDocs
+        run: pip install mkdocs-material # Устанавливаем MkDocs и тему Material
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force # Собираем сайт и публикуем на gh-pages
