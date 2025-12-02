@@ -5,3 +5,12 @@
 body[data-auth="true"] .md-nav__item.secret-item {
   display: block !important;
 }
+
+/* Hide search form if not authorized */
+.md-search__form {
+  display: none;
+}
+
+body[data-auth="true"] .md-search__form {
+  display: block;
+}
