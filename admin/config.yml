@@ -2,6 +2,9 @@ backend:
   name: github
   repo: SkyClerik/dwarf-clash-decap-cms-wiki # <-- ЗАМЕНИ ЭТО! Например: SkyClerik/my-decap-cms-wiki
   branch: main # или master, в зависимости от названия твоей основной ветки
+  oauth:
+    provider: github
+    app_id: Ov23liUwLeOBvryH17su
 
 media_folder: "assets/images" # Папка для загруженных картинок
 public_folder: "/assets/images" # Публичный путь к картинкам
